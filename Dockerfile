@@ -4,7 +4,7 @@ LABEL maintainer="Travis Merrill"
 ##Environment vairiables
 ENV ASTERISK_VERSION=17.9.4 \
     FREEPBX_VERSION=14
-
+RUN whoami
 ##initial update
 RUN apt-get update && apt-get upgrade -y && \
     apt-get install gnupg2 -y && \
