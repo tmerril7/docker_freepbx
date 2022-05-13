@@ -8,17 +8,17 @@ RUN whoami
 ##initial update
 RUN apt-get update && apt-get upgrade -y && \
     apt-get install gnupg2 -y && \
-    wget -qO - https://packages.sury.org/php/apt.gpg | sudo apt-key add - && \
-    echo "deb https://packages.sury.org/php/ $(lsb_release -sc) main" | sudo tee /etc/apt/sources.list.d/php7.x.list && \
+    wget -qO - https://packages.sury.org/php/apt.gpg | apt-key add - && \
+    echo "deb https://packages.sury.org/php/ $(lsb_release -sc) main" | tee /etc/apt/sources.list.d/php7.x.list && \
     apt-get update && \
     apt-get install -y build-essential linux-headers-`uname -r` openssh-server apache2 mariadb-server \
       mariadb-client bison flex php7.4 php7.4-curl php7.4-cli php7.4-common php7.4-mysql php7.4-gd php7.4-mbstring \
       php7.4-intl php7.4-xml php-pear curl sox libncurses5-dev libssl-dev mpg123 libxml2-dev libnewt-dev sqlite3 \
       libsqlite3-dev pkg-config automake libtool autoconf git unixodbc-dev uuid uuid-dev \
       libasound2-dev libogg-dev libvorbis-dev libicu-dev libcurl4-openssl-dev libical-dev libneon27-dev libsrtp2-dev \
-      libspandsp-dev sudo subversion libtool-bin python-dev unixodbc dirmngr sendmail-bin sendmail && \
-    curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash - && \
-    sudo apt-get install -y nodejs
+      libspandsp-dev subversion libtool-bin python-dev unixodbc dirmngr sendmail-bin sendmail && \
+    curl -sL https://deb.nodesource.com/setup_14.x | -E bash - && \
+    apt-get install -y nodejs
     
 ## testing s6 overlay
 ARG S6_OVERLAY_VERSION=3.1.0.1
