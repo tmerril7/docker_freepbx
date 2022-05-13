@@ -4,10 +4,10 @@ LABEL maintainer="Travis Merrill"
 ##Environment vairiables
 ENV ASTERISK_VERSION=17.9.4 \
     FREEPBX_VERSION=14
-RUN whoami
+    
 ##initial update
-RUN apt-get update && apt-get upgrade -y && \
-    apt-get install gnupg2 -y && \
+RUN apt-get update && apt-get upgrade -y && apt-get install wget -y
+RUN apt-get install gnupg2 -y && \
     wget -qO - https://packages.sury.org/php/apt.gpg | apt-key add - && \
     echo "deb https://packages.sury.org/php/ $(lsb_release -sc) main" | tee /etc/apt/sources.list.d/php7.x.list && \
     apt-get update && \
