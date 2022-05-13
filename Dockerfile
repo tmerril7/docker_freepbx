@@ -9,7 +9,7 @@ ENV ASTERISK_VERSION=17.9.4 \
 RUN apt-get update && apt-get upgrade -y && apt-get install wget -y
 RUN apt-get install gnupg2 -y && \
     wget -qO - https://packages.sury.org/php/apt.gpg | apt-key add - && \
-    echo "deb https://packages.sury.org/php/ $(lsb_release -sc) main" | tee /etc/apt/sources.list.d/php7.x.list && \
+    echo "deb https://packages.sury.org/php/ `lsb_release -sc` main" | tee /etc/apt/sources.list.d/php7.x.list && \
     apt-get update && \
     apt-get install -y build-essential linux-headers-`uname -r` openssh-server apache2 mariadb-server \
       mariadb-client bison flex php7.4 php7.4-curl php7.4-cli php7.4-common php7.4-mysql php7.4-gd php7.4-mbstring \
