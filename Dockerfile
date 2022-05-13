@@ -18,7 +18,7 @@ RUN apt-get install gnupg2 -y && \
       libsqlite3-dev pkg-config automake libtool autoconf git unixodbc-dev uuid uuid-dev \
       libasound2-dev libogg-dev libvorbis-dev libicu-dev libcurl4-openssl-dev libical-dev libneon27-dev libsrtp2-dev \
       libspandsp-dev subversion libtool-bin python-dev unixodbc dirmngr sendmail-bin sendmail && \
-    curl -sL https://deb.nodesource.com/setup_14.x | -E bash - && \
+    curl -sL https://deb.nodesource.com/setup_14.x | bash - && \
     apt-get install -y nodejs
     
 ## testing s6 overlay
