@@ -6,7 +6,7 @@ ENV ASTERISK_VERSION=17.9.4 \
     FREEPBX_VERSION=14
     
 ##initial update
-RUN apt-get update && apt-get upgrade -y && apt-get install wget -y
+RUN apt-get update && apt-get upgrade -y && apt-get install -y wget lsb-release 
 RUN apt-get install gnupg2 -y && \
     wget -qO - https://packages.sury.org/php/apt.gpg | apt-key add - && \
     /bin/sh -c 'echo "deb https://packages.sury.org/php/ $(lsb_release -sc) main"' | tee /etc/apt/sources.list.d/php7.x.list && \
