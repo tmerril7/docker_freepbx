@@ -11,7 +11,8 @@ RUN apt-get install gnupg2 -y && \
     wget -qO - https://packages.sury.org/php/apt.gpg | apt-key add - && \
     /bin/sh -c 'echo "deb https://packages.sury.org/php/ $(lsb_release -sc) main"' | tee /etc/apt/sources.list.d/php7.x.list && \
     apt-get update && \
-    apt-get install -y build-essential linux-headers-$(uname -r) openssh-server apache2 mariadb-server \
+    /bin/sh -c 'apt-get install linux-headers-$(uname -r)' && \
+    apt-get install -y build-essential openssh-server apache2 mariadb-server \
       mariadb-client bison flex php7.4 php7.4-curl php7.4-cli php7.4-common php7.4-mysql php7.4-gd php7.4-mbstring \
       php7.4-intl php7.4-xml php-pear curl sox libncurses5-dev libssl-dev mpg123 libxml2-dev libnewt-dev sqlite3 \
       libsqlite3-dev pkg-config automake libtool autoconf git unixodbc-dev uuid uuid-dev \
