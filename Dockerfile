@@ -20,7 +20,7 @@ RUN apt-get install gnupg2 -y && \
       libspandsp-dev subversion libtool-bin python-dev unixodbc dirmngr sendmail-bin sendmail && \
     curl -sL https://deb.nodesource.com/setup_14.x | bash - && \
     apt-get install -y nodejs
-## MariaDB ODBC & Asterisk
+## MariaDB ODBC
 RUN cd /usr/src/ && \
     wget https://wiki.freepbx.org/download/attachments/122487323/mariadb-connector-client-library_3.0.8-1_amd64.deb && \
     dpkg -i mariadb-connector-client-library_3.0.8-1_amd64.deb
@@ -36,3 +36,13 @@ RUN tar -C / -Jxpf /tmp/s6-overlay-noarch.tar.xz
 ADD https://github.com/just-containers/s6-overlay/releases/download/v${S6_OVERLAY_VERSION}/s6-overlay-x86_64.tar.xz /tmp
 RUN tar -C / -Jxpf /tmp/s6-overlay-x86_64.tar.xz
 ENTRYPOINT ["/init"]
+## Aterisk
+RUN wget http://downloads.asterisk.org/pub/telephony/asterisk/asterisk-16-current.tar.gz
+RUN tar xvfz asterisk-16-current.tar.gz && \
+    rm -f asterisk-16-current.tar.gz && \
+    cd asterisk-* && \
+    contrib/scripts/get_mp3_source.sh && \
+    contrib/scripts/install_prereq install && \
+    ./configure --with-pjproject-bundled --with-jansson-bundled && \
+    make menuselect.makeopts && \
+    menuselect/menuselect --enable app_macro --enable format_mp3 menuselect.makeopts
