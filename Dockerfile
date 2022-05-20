@@ -23,8 +23,7 @@ RUN apt-get install gnupg2 -y && \
 ## MariaDB ODBC & Asterisk
 RUN cd /usr/src/ && \
     wget https://wiki.freepbx.org/download/attachments/122487323/mariadb-connector-client-library_3.0.8-1_amd64.deb && \
-    dpkg -i mariadb-connector-client-library_3.0.8-1_amd64.deb && \
-    pear install Console_Getopt
+    dpkg -i mariadb-connector-client-library_3.0.8-1_amd64.deb
     
 ## testing s6 overlay
 ARG S6_OVERLAY_VERSION=3.1.0.1
